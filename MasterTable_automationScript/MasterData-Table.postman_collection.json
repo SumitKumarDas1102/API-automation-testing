@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "50fd70e4-c632-4deb-a312-13891e4060fe",
+		"name": "MasterData-Table",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login ForMasterTable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC-key01  Get 200 success status\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key02 Verify that the Access token is appaering with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key03 Verify that the Refresh token is appaering with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key04 Verify that the Access token's expires time will visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"expires_in\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key05 Verify that the Refresh token's expires time will visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_expires_in\");\r",
+							"pm.environment.get(\"variable_key\");\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"const getAccessToken = responseJson.access_token\r",
+							"console.log(getAccessToken)\r",
+							"pm.environment.set(\"accessToken_Master\", getAccessToken);\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "hlaqa",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "a0005277",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "welcome@123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "92d79ea8-fad3-4ed7-87d6-aea5c574aa6f",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{loginBaseURI}}/realms/hlaqa/protocol/openid-connect/token",
+					"host": [
+						"{{loginBaseURI}}"
+					],
+					"path": [
+						"realms",
+						"hlaqa",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "masterdata_fetchAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC-Master01 - Verify that the Status code is 200\", function () {\r",
+							"    if(pm.response.to.have.status(200)){\r",
+							"        console.log(\"Verify that the Status code is 200\")\r",
+							"    } else{\r",
+							"        console.log(pm.response)\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master02 - Verify that the DIRECT_CREDIT_BANK will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"DIRECT_CREDIT_BANK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master03 - Verify that the STATE will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"STATE\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master04 - Verify that the COUNTRY will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"COUNTRY\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master05 - Verify that the RELIGION will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"RELIGION\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master06 - Verify that the OCCUPATION will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"OCCUPATION\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master07 - Verify that the NATIONALITY will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"NATIONALITY\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master08 - Verify that the MARITAL_STATUS will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"MARITAL_STATUS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master09 - Verify that the RACE will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"RACE\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master10 - Verify that the RELATION will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"RELATION\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master11 - Verify that the POST_CODE will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"POST_CODE\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master12 - Verify that the SALUTATION will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"SALUTATION\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master13 - Verify that the PAYMENT_FREQUENCY will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"PAYMENT_FREQUENCY\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master14 - Verify that the INSURANCE_COMPANY will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"INSURANCE_COMPANY\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-Master15 - Verify that the ADDRESS_TYPE will be visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"ADDRESS_TYPE\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken_Master}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "wsrt",
+						"value": "1613623480",
+						"type": "text"
+					},
+					{
+						"key": "agentcode",
+						"value": "A0006711",
+						"type": "text"
+					},
+					{
+						"key": "appversion",
+						"value": "3.22.1",
+						"type": "text"
+					},
+					{
+						"key": "deviceid",
+						"value": "0F3CE4F9-CE5E-40B4-8FA9-EA35F316474E",
+						"type": "text"
+					},
+					{
+						"key": "appcode",
+						"value": "IMS",
+						"type": "text"
+					},
+					{
+						"key": "appchannel",
+						"value": "agency",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURI}}/v1/masterdata/ALL",
+					"host": [
+						"{{baseURI}}"
+					],
+					"path": [
+						"v1",
+						"masterdata",
+						"ALL"
+					]
+				},
+				"description": "Fetch all data from Master table"
+			},
+			"response": []
+		}
+	]
+}

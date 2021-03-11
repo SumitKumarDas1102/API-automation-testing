@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "e4651b7f-135f-4bb3-895f-4819a4341e38",
+		"name": "keycloak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC-key01  Get 200 success status\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key02 Verify that the Access token is appaering with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key03 Verify that the Refresh token is appaering with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key04 Verify that the Access token's expires time will visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"expires_in\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key05 Verify that the Refresh token's expires time will visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_expires_in\");\r",
+							"pm.environment.get(\"variable_key\");\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"const getRefreshToken = responseJson.refresh_token\r",
+							"console.log(getRefreshToken)\r",
+							"pm.environment.set(\"refresh_token\", getRefreshToken);\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "hlaqa",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "a0005277",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "welcome@123",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "92d79ea8-fad3-4ed7-87d6-aea5c574aa6f",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak_baseURL}}/realms/hlaqa/protocol/openid-connect/token",
+					"host": [
+						"{{keycloak_baseURL}}"
+					],
+					"path": [
+						"realms",
+						"hlaqa",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC-key06 Get 200 success status\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key07 Verify that the Access token is appaering with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key08 Verify that the Refresh token is appaering with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_token\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key09 Verify that the Access token's expires time will visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"expires_in\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC-key10 Verify that the Refresh token's expires time will visible with response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"refresh_expires_in\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "hlaqa",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "92d79ea8-fad3-4ed7-87d6-aea5c574aa6f",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{keycloak_baseURL}}/realms/hlaqa/protocol/openid-connect/token",
+					"host": [
+						"{{keycloak_baseURL}}"
+					],
+					"path": [
+						"realms",
+						"hlaqa",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
