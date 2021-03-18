@@ -1,0 +1,20 @@
+{
+  "name": "hla_api_automation",
+  "version": "1.0.0",
+  "description": "api automation testing using mocha framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sumit kumar das",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^6.6.0"
+  },
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.6.0",
+    "cypress-localstorage-commands": "^1.4.1",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0"
+  }
+}
